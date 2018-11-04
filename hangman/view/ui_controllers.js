@@ -80,6 +80,8 @@ function nextGame(word_picked) {
 // reset ui elements for new game
 function resetGame() {
 	if(current_game == GAME_LENGTH) {
+		let name = localStorage.getItem(NAME);
+		saveInDatabase(name, current_score);
 		window.location.href = "lab3_rank.html";
 	}
 	clearInterval(timer);
