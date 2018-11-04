@@ -3,7 +3,7 @@ let current_attempt = 0;
 let current_word = "";
 let current_answer = "";
 let current_time = "";
-let current_game = 1;
+let current_game = 0;
 let timer = 0;
 	
 // grab view components

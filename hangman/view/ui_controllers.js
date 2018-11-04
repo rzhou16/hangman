@@ -16,14 +16,6 @@ function keypadInit() {
 		keypad.appendChild(but);
         i+=1;
     }
-	
-	let but = document.createElement("button");
-	but.innerText = "RESET";
-	but.style.height = "7vh";
-	but.style.fontSize = "4vh";
-	but.className = "col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center";
-	but.onclick = resetGame;
-	keypad.appendChild(but);
 }
 
 // display score
@@ -45,62 +37,54 @@ function displayAttempts(current_attempt) {
 // word_picked - new word picked from dictionary
 function gameInit(word_picked) {
 	current_score = STARTING_SCORE;
-	current_attempt = MAX_ATTEMPTS;
-	current_word = word_picked;
-	current_answer = current_word.replace(/[a-zA-Z]/g, "_");
-	current_time = MAX_TIME;
 	
 	displayScore(current_score);
 	score.style.fontSize = "6vw";
-	displayQuestion(word_picked);
 	attempts.style.fontSize = "3vw";
-	displayAttempts(current_attempt);
 	time.style.fontSize = "3vw";
-
-	timer = window.setInterval(function() {
-		let timeLeft = getTime();
-		displayTime(timeLeft);
-		if(timeLeft == 0) {
-			clearInterval(timer);
-			resetGame();
-		}}, 1000);
+	
+	nextGame(word_picked);
 }
 
 // update ui elements for next game
 // word_picked - new word picked from dictionary
 function nextGame(word_picked) {
-	current_attempt = MAX_ATTEMPTS;
-	current_word = word_picked;
-	current_answer = current_word.replace(/[a-zA-Z]/g, "_");
-	
-	displayQuestion(word_picked);
-	displayAttempts(current_attempt);
-}
-
-// reset ui elements for new game
-function resetGame() {
-	if(current_game == GAME_LENGTH) {
+	current_game++;
+	if(current_game > GAME_LENGTH) {
 		let name = localStorage.getItem(NAME);
 		saveInDatabase(name, current_score);
 		window.location.href = "lab3_rank.html";
 	}
+	
 	clearInterval(timer);
-	gameInit(DICTIONARY[pickWord()]);
-	current_game++;
+	
+	current_attempt = MAX_ATTEMPTS;
+	current_word = word_picked;
+	current_answer = current_word.replace(/[a-zA-Z]/g, "_");
+	current_time = MAX_TIME;
+
+	displayQuestion(word_picked);
+	displayAttempts(current_attempt);
+	
+	timer = window.setInterval(function() {
+		let timeLeft = getTime();
+		displayTime(timeLeft);
+		if(timeLeft == 0) {
+			gameLostWindow(current_word);
+			nextGame(DICTIONARY[pickWord()]);
+		}}, 1000);
 }
 
 // message alert if won
 // word - the answer
 function gameWonWindow(word) {
-	setTimeout(function () { alert("You got it. It's " + word + "!"); }, 10);
-	resetGame();
+	setTimeout(function () { alert("You got it. It's " + word + "!"); }, 20);
 }
 
 // message alert if lost
 // word - the answer
 function gameLostWindow(word) {
-	setTimeout(function () { alert("The word is " + word + "! You suck!"); }, 10);
-	resetGame();
+	setTimeout(function () { alert("The word is " + word + "! You suck!"); }, 20);
 }
 
 // display remaining time

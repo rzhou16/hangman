@@ -46,7 +46,7 @@ function processPick(alphabet) {
 		if(current_attempt == 0 && current_answer.includes("_")) {
 			tmp = current_word;
 			// tell event handler to start next game
-			callNextGame(DICTIONARY[pickWord()]);
+			nextGame(DICTIONARY[pickWord()]);
 			// tell event handler to display alert box
 			callAlertWindow(tmp, 0);
 		}

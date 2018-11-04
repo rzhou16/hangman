@@ -14,3 +14,25 @@ function saveInDatabase(name, score) {
 	console.log(data);
 	ajax.send(data);
 }
+
+function getFromDatabase(callback1, callback2, callback3) {
+	let ajax = new XMLHttpRequest();
+	let method = "GET";
+	let url = "http://localhost/hangman/model/get.php";
+	ajax.open(method, url, true);
+	ajax.send();
+	ajax.onreadystatechange = function () {
+		if(this.readyState == 4 && this.status == 200) {
+			let jsonObject = this.responseText;
+			if(typeof jsonObject != "undefined"){
+				if(jsonObject=="[]"){
+					callback1();
+				} else {
+					callback2(jsonObject);
+				}
+			} else {
+				callback3();
+			}
+		}
+	}
+}

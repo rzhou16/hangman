@@ -30,9 +30,4 @@ function callDisplayAttempts(attempt) {
 	displayAttempts(attempt);
 }
 
-// tell ui controller to start next game
-function callNextGame(word) {
-	nextGame(word);
-}
-
 let getTime = () => decrementTime();

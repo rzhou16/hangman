@@ -14,12 +14,31 @@
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
+	
+<style>
+	table, th, td
+	{
+		border: 1px solid black;
+	}
+
+	table
+	{
+		border-collapse: collapse;
+	}
+	
+	td
+	{
+		width: 10vw;
+	}
+</style>
 
 <body>
 	<!-- div to display rank -->
     <div class="text-center" id="rank"></div>
 </body>
 
+<!-- link to databse I/O functions -->
+<script src="model/database_io.js"></script>
 <!-- link to ui controller -->
 <script src="view/rank_style.js"></script>
 
