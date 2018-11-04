@@ -52,3 +52,5 @@ function processPick(alphabet) {
 		}
 	}
 }
+
+let decrementTime = () => current_time--;

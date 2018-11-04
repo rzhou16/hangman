@@ -34,3 +34,5 @@ function callDisplayAttempts(attempt) {
 function callNextGame(word) {
 	nextGame(word);
 }
+
+let getTime = () => decrementTime();

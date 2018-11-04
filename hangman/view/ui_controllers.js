@@ -48,12 +48,22 @@ function gameInit(word_picked) {
 	current_attempt = MAX_ATTEMPTS;
 	current_word = word_picked;
 	current_answer = current_word.replace(/[a-zA-Z]/g, "_");
+	current_time = MAX_TIME;
 	
 	displayScore(current_score);
 	score.style.fontSize = "6vw";
 	displayQuestion(word_picked);
+	attempts.style.fontSize = "3vw";
 	displayAttempts(current_attempt);
-	attempts.style.fontSize = "3vw"
+	time.style.fontSize = "3vw";
+
+	timer = window.setInterval(function() {
+		let timeLeft = getTime();
+		displayTime(timeLeft);
+		if(timeLeft == 0) {
+			clearInterval(timer);
+			resetGame();
+		}}, 1000);
 }
 
 // update ui elements for next game
@@ -69,17 +79,30 @@ function nextGame(word_picked) {
 
 // reset ui elements for new game
 function resetGame() {
+	if(current_game == GAME_LENGTH) {
+		window.location.href = "lab3_rank.html";
+	}
+	clearInterval(timer);
 	gameInit(DICTIONARY[pickWord()]);
+	current_game++;
 }
 
 // message alert if won
 // word - the answer
 function gameWonWindow(word) {
 	setTimeout(function () { alert("You got it. It's " + word + "!"); }, 10);
+	resetGame();
 }
 
 // message alert if lost
 // word - the answer
 function gameLostWindow(word) {
 	setTimeout(function () { alert("The word is " + word + "! You suck!"); }, 10);
+	resetGame();
+}
+
+// display remaining time
+// current_time - time to display time
+function displayTime(current_time) {
+	time.innerHTML = "Remaining Time: " + current_time + "s";
 }
