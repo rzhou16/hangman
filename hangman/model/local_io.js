@@ -1,0 +1,1 @@
+let localSave = (x, y) => localStorage.setItem(x, y);
