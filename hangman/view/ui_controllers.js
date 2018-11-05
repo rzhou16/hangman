@@ -1,4 +1,5 @@
-gameInit(DICTIONARY[pickWord()]);
+let words = pickDistinctWords();
+gameInit(words[0]);
 keypadInit();
 
 // initialise keypad buttons
@@ -20,39 +21,54 @@ function keypadInit() {
 
 // display score
 function displayScore(current_score) {
-    score.innerText = current_score;
+    score.innerHTML = current_score;
 }
 
 // display question and incremental progress
 function displayQuestion(word) {
-    question.innerText = current_answer.split("").join(" ");
+    question.innerHTML = current_answer.split("").join(" ");
 }
 
 // display remaining attempts
 function displayAttempts(current_attempt) {
-	attempts.innerText = "Remaining Wrong Attempts: " + current_attempt;
+	attempts.innerHTML = "Remaining Wrong Attempts: " + current_attempt;
+}
+
+// display current question number
+function displayNumber(current_game) {
+	number.innerHTML = "Question " + current_game;
+}
+
+// display remaining time
+function displayTime(current_time) {
+	time.innerHTML = "Remaining Time: " + current_time + "s";
 }
 
 // initalise ui elements
 // word_picked - new word picked from dictionary
 function gameInit(word_picked) {
-	current_score = STARTING_SCORE;
+	nextGame(word_picked);
 	
+	current_score = STARTING_SCORE;
 	displayScore(current_score);
 	score.style.fontSize = "6vw";
 	attempts.style.fontSize = "3vw";
 	time.style.fontSize = "3vw";
-	
-	nextGame(word_picked);
+	number.style.fontSize = "3vw";
 }
 
 // update ui elements for next game
 // word_picked - new word picked from dictionary
 function nextGame(word_picked) {
 	current_game++;
+	console.log(word_picked);
+	displayNumber(current_game);
+	
 	if(current_game > GAME_LENGTH) {
 		let name = localStorage.getItem(NAME);
 		saveInDatabase(name, current_score);
+		// save user score locally for later rank matching
+		localSave(SCORE, current_score);
 		window.location.href = "lab3_rank.html";
 	}
 	
@@ -70,25 +86,6 @@ function nextGame(word_picked) {
 		let timeLeft = getTime();
 		displayTime(timeLeft);
 		if(timeLeft == 0) {
-			gameLostWindow(current_word);
-			nextGame(DICTIONARY[pickWord()]);
+			nextGame(words[current_game]);
 		}}, 1000);
-}
-
-// message alert if won
-// word - the answer
-function gameWonWindow(word) {
-	setTimeout(function () { alert("You got it. It's " + word + "!"); }, 20);
-}
-
-// message alert if lost
-// word - the answer
-function gameLostWindow(word) {
-	setTimeout(function () { alert("The word is " + word + "! You suck!"); }, 20);
-}
-
-// display remaining time
-// current_time - time to display time
-function displayTime(current_time) {
-	time.innerHTML = "Remaining Time: " + current_time + "s";
 }

@@ -1,7 +1,5 @@
 // picks word from dictionary
-function pickWord() {
-    return Math.floor((Math.random()*(DICTIONARY.length-1))+0);
-}
+let pickWord = () => Math.floor((Math.random()*(DICTIONARY.length-1))+0);
 
 // replaces a character in a string at a single index
 // index - index of string to replace
@@ -35,9 +33,7 @@ function processPick(alphabet) {
 			callDisplayScore(++current_score);
 			tmp = current_word;
 			// tell event handler to start next game
-			nextGame(DICTIONARY[pickWord()]);
-			// tell event handler to display alert box
-			callAlertWindow(tmp, 1);
+			nextGame(words[current_game])
 		}
 	} else {
 		// tell event handler to decrease attempt count
@@ -46,11 +42,10 @@ function processPick(alphabet) {
 		if(current_attempt == 0 && current_answer.includes("_")) {
 			tmp = current_word;
 			// tell event handler to start next game
-			nextGame(DICTIONARY[pickWord()]);
-			// tell event handler to display alert box
-			callAlertWindow(tmp, 0);
+			nextGame(words[current_game])
 		}
 	}
 }
 
+// decrease count of remaining time by one
 let decrementTime = () => current_time--;

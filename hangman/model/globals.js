@@ -12,3 +12,4 @@ let keypad = document.getElementById("keypad");
 let question = document.getElementById("question");
 let attempts = document.getElementById("attempts");
 let time = document.getElementById("time");
+let number = document.getElementById("number");
