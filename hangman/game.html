@@ -1,0 +1,50 @@
+<!DOCTYPE <!DOCTYPE html>
+ <html>
+    <head>
+        <title>Hangman</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+         <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+
+<body>
+	<!-- div to display current question number -->
+    <div class="text-center" id="number"></div>
+	<!-- div to display game score -->
+    <div class="text-center" id="score"></div>
+	<!-- div to display game question -->
+    <div class="text-center" id="question"></div>
+	<!-- div to display remaining attmepts -->
+	<div class="text-center" id="attempts"></div>
+	<!-- div to display remaining time -->
+	<div class="text-center" id="time"></div>
+	
+	<!-- container of alphabet keys -->
+	<!-- last key is reset button -->
+    <div class="container" id="keypad"></div>
+</body>
+
+<!-- link to local I/O functions -->
+<script src="model/local_io.js"></script>
+<!-- link to database I/O functions -->
+<script src="model/database_io.js"></script>
+<!-- link to global and const variables -->
+<script src="model/consts.js"></script>
+<!-- link to global variables -->
+<script src="model/globals.js"></script>
+<!-- link to event handling script -->
+<script src="control/event_handlers.js"></script>
+<!-- link to event processing script -->
+<script src="model/event_processors.js"></script>
+<!-- link to ui-related script -->
+<script src="view/ui_controllers.js"></script>
+
+</html>

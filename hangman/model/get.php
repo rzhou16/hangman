@@ -1,8 +1,8 @@
 <?php
 	$dbhost = "localhost";
-	$dbuser = "root";
-	$dbpass = "";
-	$db     = "hangman";
+	$dbuser = "id7740904_hangman";
+	$dbpass = "hangman";
+	$db     = "id7740904_hangman";
 	
 	$conn = new mysqli($dbhost, $dbuser, $dbpass, $db);
 	

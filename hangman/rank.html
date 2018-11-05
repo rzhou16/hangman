@@ -1,0 +1,53 @@
+<!DOCTYPE <!DOCTYPE html>
+ <html>
+    <head>
+        <title>Hangman</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+         <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+	
+<style>
+	th, td
+	{
+		border: 1px solid black;
+	}
+
+	table
+	{
+		border-collapse: collapse;
+		display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+	}
+	
+	td
+	{
+		width: 10vw;
+	}
+</style>
+
+<body>
+	<!-- div to display rank -->
+    <div class="text-center" id="rank"></div>
+</body>
+
+<!-- link to global and const variables -->
+<script src="model/consts.js"></script>
+<!-- link to local I/O functions -->
+<script src="model/local_io.js"></script>
+<!-- link to databse I/O functions -->
+<script src="model/database_io.js"></script>
+<!-- link to ui controller -->
+<script src="view/rank_style.js"></script>
+
+</html>

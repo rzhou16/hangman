@@ -1,9 +1,10 @@
 let words = pickDistinctWords();
+console.log(words);
 gameInit(words[0]);
-keypadInit();
 
 // initialise keypad buttons
 function keypadInit() {
+	keypad.innerHTML = "";
     let i = 0;
     while(i<(KEYPAD_SIZE - 1)) {
 		let but = document.createElement("button");
@@ -69,23 +70,51 @@ function nextGame(word_picked) {
 		saveInDatabase(name, current_score);
 		// save user score locally for later rank matching
 		localSave(SCORE, current_score);
-		window.location.href = "lab3_rank.html";
+		gameOverPage();
+	} else {
+	
+    	clearInterval(timer);
+    	
+    	current_attempt = MAX_ATTEMPTS;
+    	current_word = word_picked;
+    	current_answer = current_word.replace(/[a-zA-Z]/g, "_");
+    	current_time = MAX_TIME;
+    
+    	displayQuestion(word_picked);
+    	displayAttempts(current_attempt);
+    	
+    	timer = window.setInterval(function() {
+    		let timeLeft = getTime();
+    		displayTime(timeLeft);
+    		if(timeLeft == 0) {
+    			nextGame(words[current_game]);
+    		}}, 1000);
+    		
+    	keypadInit();
 	}
-	
-	clearInterval(timer);
-	
-	current_attempt = MAX_ATTEMPTS;
-	current_word = word_picked;
-	current_answer = current_word.replace(/[a-zA-Z]/g, "_");
-	current_time = MAX_TIME;
-
-	displayQuestion(word_picked);
-	displayAttempts(current_attempt);
-	
-	timer = window.setInterval(function() {
-		let timeLeft = getTime();
-		displayTime(timeLeft);
-		if(timeLeft == 0) {
-			nextGame(words[current_game]);
-		}}, 1000);
 }
+
+// clear page and show transition element to rank.html in case database is read before updated
+function gameOverPage() {
+    document.body.innerHTML = "";
+    
+    let message = document.createElement("div");
+    message.className = "text-center";
+    message.style.fontSize = "5vw";
+    message.innerHTML = "You are done. Click the button to see your global ranking.";
+    document.body.appendChild(message);
+    
+    let butDiv = document.createElement("div");
+    butDiv.className = "text-center";
+    let but = document.createElement("button");
+    but.onclick = function() { window.location.href = "rank.html";};
+    but.innerText = "SHOW MY RANK";
+    butDiv.appendChild(but);
+    document.body.appendChild(butDiv);
+}
+
+// change background color of an element
+function changeBGColor(element, color) {
+    element.style.background = color;
+}
+

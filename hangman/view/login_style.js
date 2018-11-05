@@ -24,7 +24,7 @@ function init() {
 		if(name.value != "") {
 			// save user name locally for later rank matching
 			localSave(NAME, name.value); 
-			window.location.href = "lab3_game.html";
+			window.location.href = "game.html";
 		}
 	}
 	inputDiv.appendChild(but);

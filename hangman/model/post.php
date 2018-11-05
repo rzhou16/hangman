@@ -1,8 +1,8 @@
 <?php
 	$dbhost = "localhost";
-	$dbuser = "root";
-	$dbpass = "";
-	$db     = "hangman";
+	$dbuser = "id7740904_hangman";
+	$dbpass = "hangman";
+	$db     = "id7740904_hangman";
 	
 	$n = $_POST['name'];
 	$s = $_POST['score'];

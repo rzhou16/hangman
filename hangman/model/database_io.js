@@ -1,7 +1,7 @@
 function saveInDatabase(name, score) {
 	let ajax = new XMLHttpRequest();
 	let method = "POST";
-	let url = "http://localhost/hangman/model/post.php";
+	let url = "model/post.php";
 	let data = "name="+name+"&score="+score;
 
 	ajax.open(method, url, true);
@@ -18,7 +18,7 @@ function saveInDatabase(name, score) {
 function getFromDatabase(callback1, callback2, callback3) {
 	let ajax = new XMLHttpRequest();
 	let method = "GET";
-	let url = "http://localhost/hangman/model/get.php";
+	let url = "model/get.php";
 	ajax.open(method, url, true);
 	ajax.send();
 	ajax.onreadystatechange = function () {

@@ -1,7 +1,7 @@
 // pass alphabet clicked to event processor
 // element - the button element
 function alphabetsOnClick(element) {
-	processPick(element.innerText);
+	processPick(element);
 }
 
 // tell ui controller to update question
@@ -19,21 +19,9 @@ function callDisplayAttempts(attempt) {
 	displayAttempts(attempt);
 }
 
-// pick words with no duplication
-// number of words = length of game
-function pickDistinctWords() {
-	let picked = [];
-	let words = [];
-	let i = 0;
-	while(i < GAME_LENGTH) {
-		let num = pickWord();
-		if(!picked.includes(num)) {
-			picked.push(num);
-			words.push(DICTIONARY[num]);
-		}
-		i += 1;
-	}
-	return words;
+// tell ui controller to change element's background color
+function callChangeBGColor(element, color) {
+	changeBGColor(element, color);
 }
 
 let getTime = () => decrementTime();

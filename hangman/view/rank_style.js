@@ -1,5 +1,6 @@
 // display ranking when connection is successful
 function displayRank(js) {
+    console.log(JSON.stringify(js));
 	scores = JSON.parse(js);
 	
 	// retrieve name and score from local storage
