@@ -1,9 +1,8 @@
 function displayRank(js) {
 	scores = JSON.parse(js);
 	
-	let display = document.createElement("rank");
+	let display = document.getElementById("rank");
 	let table = document.createElement("table");
-	table.style.align = "center";
 	
 	let tableBody = document.createElement("tbody");
 	let heading = document.createElement("tr");
@@ -61,12 +60,12 @@ function displayRank(js) {
 
 function displayConnectionError() {
 	let display = document.getElementById("rank");
-	display.innerText = "Unable to establish connection.";
+	display.innerHTML = "Unable to establish connection.";
 }
 
 function displayEmptyRankError() {
 	let display = document.getElementById("rank");
-	display.innerText = "No ranking is available.";
+	display.innerHTML = "No ranking is available.";
 }
 
 getFromDatabase(displayEmptyRankError, displayRank, displayConnectionError);
